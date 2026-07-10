@@ -1,0 +1,1309 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+    :root{
+      --border:#1a1a1a;
+      --yellow:#ffe74d;
+      --blue-bg:#dbe4f2;
+      --light-yellow:#f6e6bf;
+      --red:#ff1d1d;
+      --bg:#1a1a1a;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:#fff;
+      padding:20px;
+    }
+    .layout{
+      max-width:1500px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:20px;
+      align-items:start;
+    }
+    .panel{
+      background:#2a2a2a;
+      border:1px solid #404040;
+      border-radius:10px;
+      padding:18px;
+      box-shadow:0 2px 10px rgba(0,0,0,.3);
+      position:sticky;
+      top:20px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:20px;
+      color:#fff;
+    }
+    .panel p{
+      margin:0 0 14px;
+      font-size:13px;
+      line-height:1.4;
+      color:#ccc;
+    }
+    .field{ margin-bottom:14px; }
+    .field label{
+      display:block;
+      margin-bottom:6px;
+      font-size:13px;
+      font-weight:700;
+      color:#fff;
+    }
+    .field input, .field select{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid #404040;
+      border-radius:8px;
+      font-size:14px;
+      background:#1a1a1a;
+      color:#fff;
+    }
+    .field input::placeholder, .field select::placeholder{
+      color:#666;
+    }
+    button{
+      width:100%;
+      border:0;
+      border-radius:8px;
+      padding:12px 14px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      margin-top:8px;
+    }
+    .btn-primary{ background:#2563eb; color:#fff; }
+    .btn-primary:hover{ background:#1d4ed8; }
+    .btn-success{ background:#16a34a; color:#fff; }
+    .btn-success:hover{ background:#15803d; }
+    .btn-dark{ background:#111827; color:#fff; }
+    .btn-dark:hover{ background:#0f172a; }
+    .status{
+      margin-top:12px;
+      font-size:13px;
+      line-height:1.5;
+      white-space:pre-line;
+      color:#ccc;
+    }
+    .progress-wrap{
+      margin-top:14px;
+      display:none;
+    }
+    .progress-label{
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .progress-bar{
+      width:100%;
+      height:14px;
+      background:#404040;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid #505050;
+    }
+    .progress-bar > div{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,#2563eb,#16a34a);
+      transition:width .15s ease;
+    }
+    .sheet-wrap{
+      background:#fff;
+      border:1px solid #d0d0d0;
+      overflow:auto;
+      box-shadow:0 2px 10px rgba(0,0,0,.06);
+      padding:0;
+    }
+    .invoice{
+      width:1150px;
+      min-height:720px;
+      background:#fff;
+      position:relative;
+      margin:0 auto;
+      padding:18px 22px 20px 22px;
+      font-family: 'Arial', sans-serif;
+      color: #000;
+    }
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      min-height:140px;
+    }
+    .brand{
+      width:55%;
+      font-size:14px;
+      line-height:1.35;
+      color:#000;
+    }
+    .logo-img{
+      margin-bottom:8px;
+    }
+    .logo-img img{
+      width:170px;
+      height:auto;
+      display:block;
+    }
+    .logo-text{
+      margin-bottom:8px;
+      font-size:48px;
+      font-weight:bold;
+      color:#03a9f4;
+      text-align:left;
+      letter-spacing:2px;
+      height:60px;
+      display:flex;
+      align-items:center;
+    }
+    .company{
+      margin-top:2px;
+      font-size:14px;
+      color:#000;
+    }
+    .title{
+      width:45%;
+      text-align:right;
+      font-weight:800;
+      font-size:36px;
+      padding-top:28px;
+      padding-right:55px;
+      color:#000;
+    }
+    .customer-section{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:1fr 480px;
+      gap:20px;
+      align-items:start;
+      min-height:140px;
+    }
+    .customer{
+      font-size:16px;
+      line-height:1.35;
+      width:100%;
+      color:#000;
+    }
+    .customer .heading{
+      font-size:22px;
+      font-weight:800;
+      margin-bottom:4px;
+      color:#000;
+    }
+    .highlight{
+      background:transparent;
+      display:inline;
+      padding:0;
+      color:#000;
+    }
+    .wide-blue{
+      background:transparent;
+      display:inline;
+      min-width:auto;
+      padding:0;
+      color:#000;
+    }
+    .invoice-meta{
+      font-size:14px;
+      line-height:1.45;
+      text-align:right;
+      padding-top:46px;
+      color:#000;
+    }
+    .invoice-meta a{
+      color:#0b57d0;
+      text-decoration:underline;
+    }
+    .red{
+      color:var(--red);
+      font-size:15px;
+      line-height:1.15;
+      margin:2px 0 4px;
+      white-space:nowrap;
+    }
+    .date-box{
+      display:inline-block;
+      min-width:140px;
+      background:#eaf0f7;
+      padding:2px 10px;
+      text-align:center;
+      color:#000;
+    }
+    .duebar{
+      margin-top:14px;
+      margin-left:auto;
+      width:470px;
+      background:var(--light-yellow);
+      border:1px solid #a79a63;
+      border-bottom-width:2px;
+      font-size:18px;
+      font-weight:700;
+      padding:4px 14px;
+      text-align:center;
+      color:#000;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      table-layout:fixed;
+      margin-top:18px;
+      font-size:14px;
+      color:#000;
+    }
+    th, td{
+      border:1px solid var(--border);
+      padding:6px 6px;
+      vertical-align:top;
+      color:#000;
+    }
+    th{
+      font-weight:700;
+      text-align:center;
+      background:#f6f6f6;
+      color:#000;
+    }
+    .col-desc{ width:64%; }
+    .col-units{ width:10%; text-align:center; }
+    .col-unitcost{ width:12%; text-align:center; }
+    .col-amount{ width:14%; text-align:right; }
+    .desc-area{
+      min-height:130px;
+      line-height:1.35;
+      color:#000;
+    }
+    .desc-line{
+      display:block;
+      margin-bottom:2px;
+      color:#000;
+    }
+    .amount-cell{
+      text-align:right;
+      font-weight:400;
+      padding-top:42px;
+      padding-right:8px;
+      color:#000;
+    }
+    .amount-highlight{
+      display:inline-block;
+      background:transparent;
+      min-width:120px;
+      text-align:right;
+      padding:1px 8px;
+      border:2px solid #2e7d32;
+      font-weight:700;
+      color:#000;
+    }
+    .subtotal, .total{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:0;
+      border:1px solid var(--border);
+      padding:8px 6px;
+      color:#000;
+    }
+    .subtotal{
+      background:#fff;
+    }
+    .subtotal .label,
+    .total .label{
+      font-size:14px;
+      color:#000;
+    }
+    .subtotal .value{
+      font-size:14px;
+      background:#fff;
+      color:#000;
+      text-align:right;
+    }
+    .total{
+      margin-top:0;
+      background:var(--light-yellow);
+    }
+    .total .label{
+      font-weight:700;
+      font-size:15px;
+      color:#000;
+    }
+    .total .value{
+      font-weight:700;
+      font-size:15px;
+      background:var(--light-yellow);
+      color:#000;
+      text-align:right;
+    }
+    .eft{
+      margin-top:20px;
+      font-size:13px;
+      line-height:1.55;
+      color:#000;
+    }
+    .eft .head{
+      font-weight:700;
+      text-decoration:underline;
+      margin-bottom:2px;
+      color:#000;
+    }
+    .empresa-footer{
+      margin-top:20px;
+      padding-top:15px;
+      border-top:1px solid #ddd;
+      font-size:11px;
+      color:#666;
+      text-align:center;
+      font-weight:bold;
+    }
+    @media print{
+      body{ background:#fff; padding:0; }
+      .layout{ display:block; max-width:none; margin:0; }
+      .panel{ display:none !important; }
+      .sheet-wrap{ border:0; box-shadow:none; overflow:visible; }
+      .invoice{ width:100%; min-height:auto; padding:18px 22px; }
+    }
+  
+
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Facturas ZIP</title>
+  <style>
+    :root{
+      --border:#1a1a1a;
+      --yellow:#ffe74d;
+      --blue-bg:#dbe4f2;
+      --light-yellow:#f6e6bf;
+      --red:#ff1d1d;
+      --bg:#1a1a1a;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:#fff;
+      padding:20px;
+    }
+    .layout{
+      max-width:1500px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:20px;
+      align-items:start;
+    }
+    .panel{
+      background:#2a2a2a;
+      border:1px solid #404040;
+      border-radius:10px;
+      padding:18px;
+      box-shadow:0 2px 10px rgba(0,0,0,.3);
+      position:sticky;
+      top:20px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:20px;
+      color:#fff;
+    }
+    .panel p{
+      margin:0 0 14px;
+      font-size:13px;
+      line-height:1.4;
+      color:#ccc;
+    }
+    .field{ margin-bottom:14px; }
+    .field label{
+      display:block;
+      margin-bottom:6px;
+      font-size:13px;
+      font-weight:700;
+      color:#fff;
+    }
+    .field input, .field select{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid #404040;
+      border-radius:8px;
+      font-size:14px;
+      background:#1a1a1a;
+      color:#fff;
+    }
+    .field input::placeholder, .field select::placeholder{
+      color:#666;
+    }
+    button{
+      width:100%;
+      border:0;
+      border-radius:8px;
+      padding:12px 14px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      margin-top:8px;
+    }
+    .btn-primary{ background:#2563eb; color:#fff; }
+    .btn-primary:hover{ background:#1d4ed8; }
+    .btn-success{ background:#16a34a; color:#fff; }
+    .btn-success:hover{ background:#15803d; }
+    .btn-dark{ background:#111827; color:#fff; }
+    .btn-dark:hover{ background:#0f172a; }
+    .status{
+      margin-top:12px;
+      font-size:13px;
+      line-height:1.5;
+      white-space:pre-line;
+      color:#ccc;
+    }
+    .progress-wrap{
+      margin-top:14px;
+      display:none;
+    }
+    .progress-label{
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .progress-bar{
+      width:100%;
+      height:14px;
+      background:#404040;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid #505050;
+    }
+    .progress-bar > div{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,#2563eb,#16a34a);
+      transition:width .15s ease;
+    }
+    .sheet-wrap{
+      background:#fff;
+      border:1px solid #d0d0d0;
+      overflow:auto;
+      box-shadow:0 2px 10px rgba(0,0,0,.06);
+      padding:0;
+    }
+    .invoice{
+      width:1150px;
+      min-height:720px;
+      background:#fff;
+      position:relative;
+      margin:0 auto;
+      padding:18px 22px 20px 22px;
+      font-family: 'Arial', sans-serif;
+      color: #000;
+    }
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      min-height:140px;
+    }
+    .brand{
+      width:55%;
+      font-size:14px;
+      line-height:1.35;
+      color:#000;
+    }
+    .logo-img{
+      margin-bottom:8px;
+    }
+    .logo-img img{
+      width:170px;
+      height:auto;
+      display:block;
+    }
+    .logo-text{
+      margin-bottom:8px;
+      font-size:48px;
+      font-weight:bold;
+      color:#03a9f4;
+      text-align:left;
+      letter-spacing:2px;
+      height:60px;
+      display:flex;
+      align-items:center;
+    }
+    .company{
+      margin-top:2px;
+      font-size:14px;
+      color:#000;
+    }
+    .title{
+      width:45%;
+      text-align:right;
+      font-weight:800;
+      font-size:36px;
+      padding-top:28px;
+      padding-right:55px;
+      color:#000;
+    }
+    .customer-section{
+      margin-top:10px;
+      display:grid;
+      grid-template-columns:1fr 480px;
+      gap:20px;
+      align-items:start;
+      min-height:140px;
+    }
+    .customer{
+      font-size:16px;
+      line-height:1.35;
+      width:100%;
+      color:#000;
+    }
+    .customer .heading{
+      font-size:22px;
+      font-weight:800;
+      margin-bottom:4px;
+      color:#000;
+    }
+    .highlight{
+      background:transparent;
+      display:inline;
+      padding:0;
+      color:#000;
+    }
+    .wide-blue{
+      background:transparent;
+      display:inline;
+      min-width:auto;
+      padding:0;
+      color:#000;
+    }
+    .invoice-meta{
+      font-size:14px;
+      line-height:1.45;
+      text-align:right;
+      padding-top:46px;
+      color:#000;
+    }
+    .invoice-meta a{
+      color:#0b57d0;
+      text-decoration:underline;
+    }
+    .red{
+      color:var(--red);
+      font-size:15px;
+      line-height:1.15;
+      margin:2px 0 4px;
+      white-space:nowrap;
+    }
+    .date-box{
+      display:inline-block;
+      min-width:140px;
+      background:#eaf0f7;
+      padding:2px 10px;
+      text-align:center;
+      color:#000;
+    }
+    .duebar{
+      margin-top:14px;
+      margin-left:auto;
+      width:470px;
+      background:var(--light-yellow);
+      border:1px solid #a79a63;
+      border-bottom-width:2px;
+      font-size:18px;
+      font-weight:700;
+      padding:4px 14px;
+      text-align:center;
+      color:#000;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      table-layout:fixed;
+      margin-top:18px;
+      font-size:14px;
+      color:#000;
+    }
+    th, td{
+      border:1px solid var(--border);
+      padding:6px 6px;
+      vertical-align:top;
+      color:#000;
+    }
+    th{
+      font-weight:700;
+      text-align:center;
+      background:#f6f6f6;
+      color:#000;
+    }
+    .col-desc{ width:64%; }
+    .col-units{ width:10%; text-align:center; }
+    .col-unitcost{ width:12%; text-align:center; }
+    .col-amount{ width:14%; text-align:right; }
+    .desc-area{
+      min-height:130px;
+      line-height:1.35;
+      color:#000;
+    }
+    .desc-line{
+      display:block;
+      margin-bottom:2px;
+      color:#000;
+    }
+    .amount-cell{
+      text-align:right;
+      font-weight:400;
+      padding-top:42px;
+      padding-right:8px;
+      color:#000;
+    }
+    .amount-highlight{
+      display:inline-block;
+      background:transparent;
+      min-width:120px;
+      text-align:right;
+      padding:1px 8px;
+      border:2px solid #2e7d32;
+      font-weight:700;
+      color:#000;
+    }
+    .subtotal, .total{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:0;
+      border:1px solid var(--border);
+      padding:8px 6px;
+      color:#000;
+    }
+    .subtotal{
+      background:#fff;
+    }
+    .subtotal .label,
+    .total .label{
+      font-size:14px;
+      color:#000;
+    }
+    .subtotal .value{
+      font-size:14px;
+      background:#fff;
+      color:#000;
+      text-align:right;
+    }
+    .total{
+      margin-top:0;
+      background:var(--light-yellow);
+    }
+    .total .label{
+      font-weight:700;
+      font-size:15px;
+      color:#000;
+    }
+    .total .value{
+      font-weight:700;
+      font-size:15px;
+      background:var(--light-yellow);
+      color:#000;
+      text-align:right;
+    }
+    .eft{
+      margin-top:20px;
+      font-size:13px;
+      line-height:1.55;
+      color:#000;
+    }
+    .eft .head{
+      font-weight:700;
+      text-decoration:underline;
+      margin-bottom:2px;
+      color:#000;
+    }
+    .empresa-footer{
+      margin-top:20px;
+      padding-top:15px;
+      border-top:1px solid #ddd;
+      font-size:11px;
+      color:#666;
+      text-align:center;
+      font-weight:bold;
+    }
+    @media print{
+      body{ background:#fff; padding:0; }
+      .layout{ display:block; max-width:none; margin:0; }
+      .panel{ display:none !important; }
+      .sheet-wrap{ border:0; box-shadow:none; overflow:visible; }
+      .invoice{ width:100%; min-height:auto; padding:18px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="panel">
+      <h2>Generar facturas ZIP</h2>
+      <p>Cargá un Excel con una fila por factura. Se generará un PDF por fila y se descargará un ZIP con todo.</p>
+      <div class="field">
+        <label for="excelFile">Archivo Excel</label>
+        <input id="excelFile" type="file" accept=".xlsx,.xls" />
+      </div>
+      <button class="btn-primary" id="previewBtn">Cargar y previsualizar primera factura</button>
+      <button class="btn-success" id="generateBtn">Generar ZIP con PDFs</button>
+      <button class="btn-dark" onclick="window.print()">Imprimir vista actual</button>
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-label" id="progressLabel">0%</div>
+        <div class="progress-bar"><div id="progressFill"></div></div>
+      </div>
+      <div class="status" id="status">Esperando archivo Excel...</div>
+    </div>
+    <div class="sheet-wrap">
+      <div class="invoice" id="invoice">
+        <div class="top">
+          <div class="brand">
+            <div class="logo-img" id="logoContainer">
+              <img id="logoImg"
+                   src="https://upload.wikimedia.org/wikipedia/commons/5/50/DGO-logo.png"
+                   alt="Logo" />
+            </div>
+            <div class="company" id="companyOut">LATAM STREAMCO INC</div>
+            <div id="addressOut">885 Third Avenue, 17 floor, New York, NY 10022</div>
+            <div id="taxOut">TAX Id: 82-4849898</div>
+          </div>
+          <div class="title">INVOICE</div>
+        </div>
+        <div class="customer-section">
+          <div class="customer">
+            <div class="heading">Customer</div>
+            <div class="highlight" id="clienteOut">MCSN ALL-IN, S.L.</div><br>
+            <div>Attention: <span class="highlight" id="contactoOut">Sheila Palomares</span></div>
+            <div><span class="wide-blue">EMAIL: <span id="emailOut" class="highlight">sheila.mcgroup.com</span></span></div>
+          </div>
+          <div class="invoice-meta">
+            <div>Invoice Number : <a href="#" id="invoiceNumOut">INV-846</a></div>
+            <div class="red">Please include this invoice number with your payment</div>
+            <div>Invoice Date : <span class="date-box" id="invoiceDateOut">02/07/2026</span></div>
+          </div>
+        </div>
+        <div class="duebar" id="dueOut">Total Amount Due on&nbsp; August 1, 2026</div>
+        <table>
+          <colgroup>
+            <col class="col-desc">
+            <col class="col-units">
+            <col class="col-unitcost">
+            <col class="col-amount">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Units</th>
+              <th>Unit Cost</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="desc-area">
+                <span class="desc-line">Advertising services provided by DGO - AD. SALES</span>
+                <span class="desc-line highlight" id="glosaOut">INVERSION PUBLICITARIA DGO MARZ-ABRIL-MAYO</span>
+              </td>
+              <td></td>
+              <td></td>
+              <td class="amount-cell"><span class="amount-highlight" id="montoOut">$30,000</span></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="border-left:1px solid #1a1a1a;border-right:1px solid #1a1a1a;border-top:0;border-bottom:0;height:70px;"></td>
+              <td style="border-left:1px solid #1a1a1a;border-right:1px solid #1a1a1a;border-top:0;border-bottom:0;"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="subtotal">
+          <div class="label">SUBTOTAL</div>
+          <div class="value" id="subtotalOut">$30,000.00</div>
+        </div>
+        <div class="total">
+          <div class="label">TOTAL</div>
+          <div class="value" id="totalOut">$30,000.00</div>
+        </div>
+        <div class="eft">
+          <div class="head">Electronic Funds Transfer Details</div>
+          <div id="bankNameOut">Bank name: Citibank N.A. New York</div>
+          <div id="bankAddressOut">Bank address: 388 Greenwich Street, New York, NY 10013</div>
+          <div id="abaWireOut">ABA # for wire routing: 021000089</div>
+          <div id="abaAchOut">ABA # for ACH:</div>
+          <div id="swiftOut">Swift Code: CITIUS33</div>
+          <div id="accountNameOut">Account name: LATAM STREAMCO INC</div>
+          <div id="accountNumOut">Account #: 36439111</div>
+          <div style="margin-top:8px;">Preferred method of payment is by Electronic Funds Transfer (EFT). Please ensure to reference the invoice number in the descriptive text field of your electronic funds transfer payment.</div>
+        </div>
+        <div class="empresa-footer" id="empresaFooter">
+          Invoiced by: DGO
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const empresasData = {
+      DGO: {
+        logo: "https://upload.wikimedia.org/wikipedia/commons/5/50/DGO-logo.png",
+        company: "LATAM STREAMCO INC",
+        address: "885 Third Avenue, 17 floor, New York, NY 10022",
+        tax: "82-4849898",
+        bankName: "Citibank N.A. New York",
+        bankAddress: "388 Greenwich Street, New York, NY 10013",
+        abaWire: "021000089",
+        abaAch: "",
+        swift: "CITIUS33",
+        accountName: "LATAM STREAMCO INC",
+        accountNum: "36439111",
+        displayName: "DGO"
+      },
+      DTV: {
+        logoText: "DIRECTV",
+        company: "DIRECTV LATIN AMERICA, LLC",
+        address: "885 Third Avenue, 17 floor, New York, NY 10022",
+        tax: "954517063",
+        bankName: "Citibank N.A. New York",
+        bankAddress: "388 Greenwich Street, New York, NY 10013",
+        abaWire: "021000089",
+        abaAch: "",
+        swift: "CITIUS33",
+        accountName: "DIRECTV LATIN AMERICA LLC",
+        accountNum: "36439074",
+        displayName: "DTV"
+      }
+    };
+    let rows = [];
+    const status = document.getElementById("status");
+    const invoice = document.getElementById("invoice");
+    const progressWrap = document.getElementById("progressWrap");
+    const progressFill = document.getElementById("progressFill");
+    const progressLabel = document.getElementById("progressLabel");
+    function formatDate(date) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+    function getTodayDate() {
+      return formatDate(new Date());
+    }
+    function getDueDatePlus30Days() {
+      const today = new Date();
+      const dueDate = new Date(today.getTime() + (30 * 24 * 60 * 60 * 1000));
+      return formatDate(dueDate);
+    }
+    function getMonthName(dateStr) {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+      const parts = dateStr.split('/');
+      const monthIndex = parseInt(parts[1]) - 1;
+      const year = parts[2];
+      return months[monthIndex] + ' ' + parts[0] + ', ' + year;
+    }
+    function money(v){
+      const n = Number(String(v).replace(/[^0-9.-]/g, ""));
+      return "$" + (isNaN(n) ? 0 : n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function moneyShort(v){
+      const n = Number(String(v).replace(/[^0-9.-]/g, ""));
+      return "$" + (isNaN(n) ? 0 : n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    }
+    function setInvoice(data){
+      const empresa = (data.empresa || "DGO").toUpperCase();
+      const empresaConfig = empresasData[empresa] || empresasData["DGO"];
+      const logoContainer = document.getElementById("logoContainer");
+      
+      if (empresaConfig.logo) {
+        // DGO: mostrar imagen
+        logoContainer.innerHTML = '<img id="logoImg" src="' + empresaConfig.logo + '" alt="Logo" style="width:170px; height:auto; display:block;" />';
+      } else if (empresaConfig.logoText) {
+        // DTV: mostrar texto
+        logoContainer.innerHTML = '<div class="logo-text">' + empresaConfig.logoText + '</div>';
+      }
+      
+      document.getElementById("companyOut").textContent = empresaConfig.company;
+      document.getElementById("addressOut").textContent = empresaConfig.address;
+      document.getElementById("taxOut").textContent = "TAX Id: " + empresaConfig.tax;
+      document.getElementById("bankNameOut").textContent = "Bank name: " + empresaConfig.bankName;
+      document.getElementById("bankAddressOut").textContent = "Bank address: " + empresaConfig.bankAddress;
+      document.getElementById("abaWireOut").textContent = "ABA # for wire routing: " + empresaConfig.abaWire;
+      document.getElementById("abaAchOut").textContent = empresaConfig.abaAch ? "ABA # for ACH: " + empresaConfig.abaAch : "ABA # for ACH:";
+      document.getElementById("swiftOut").textContent = "Swift Code: " + empresaConfig.swift;
+      document.getElementById("accountNameOut").textContent = "Account name: " + empresaConfig.accountName;
+      document.getElementById("accountNumOut").textContent = "Account #: " + empresaConfig.accountNum;
+      document.getElementById("empresaFooter").textContent = "Invoiced by: " + empresaConfig.displayName;
+      document.getElementById("clienteOut").textContent = data.cliente || "";
+      document.getElementById("contactoOut").textContent = data.contacto || "";
+      document.getElementById("emailOut").textContent = data.email || "";
+      document.getElementById("glosaOut").textContent = data.glosa || "";
+      document.getElementById("montoOut").textContent = moneyShort(data.monto || 0);
+      document.getElementById("subtotalOut").textContent = money(data.monto || 0);
+      document.getElementById("totalOut").textContent = money(data.monto || 0);
+      document.getElementById("invoiceNumOut").textContent = data.invoice_number || "INV-000";
+      const invoiceDate = getTodayDate();
+      document.getElementById("invoiceDateOut").textContent = invoiceDate;
+      const dueDate = getDueDatePlus30Days();
+      const dueDateFormatted = getMonthName(dueDate);
+      document.getElementById("dueOut").innerHTML = "Total Amount Due on&nbsp; " + dueDateFormatted;
+    }
+    function normalizeRow(r){
+      return {
+        cliente: r.cliente || r.CLIENTE || r.Cliente || "",
+        contacto: r.contacto || r.CONTACTO || r.Contacto || "",
+        email: r.email || r.EMAIL || r.Email || "",
+        glosa: r.glosa || r.GLOSA || r.Glosa || "",
+        monto: r.monto || r.MONTO || r.Monto || "",
+        invoice_number: r.invoice_number || r.INVOICE_NUMBER || r["invoice number"] || r["Invoice Number"] || "",
+        invoice_date: r.invoice_date || r.INVOICE_DATE || r["invoice date"] || r["Invoice Date"] || "",
+        due_date: r.due_date || r.DUE_DATE || r["due date"] || r["Due Date"] || "",
+        empresa: r.empresa || r.EMPRESA || r.Empresa || "DGO"
+      };
+    }
+    async function loadExcel(){
+      const file = document.getElementById("excelFile").files[0];
+      if (!file){
+        alert("Seleccioná un archivo Excel.");
+        return false;
+      }
+      const data = await file.arrayBuffer();
+      const wb = XLSX.read(data, { type: "array" });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(ws, { defval: "" });
+      rows = json.map(normalizeRow);
+      if (!rows.length){
+        alert("El Excel no tiene filas de datos.");
+        return false;
+      }
+      status.textContent = `Archivo cargado correctamente.\nFilas detectadas: ${rows.length}`;
+      return true;
+    }
+    document.getElementById("previewBtn").addEventListener("click", async () => {
+      const ok = await loadExcel();
+      if (!ok) return;
+      setInvoice(rows[0]);
+      status.textContent += "\n\nVista previa cargada con la primera factura.";
+    });
+    async function generatePDFsAndZip(){
+      const ok = await loadExcel();
+      if (!ok) return;
+      progressWrap.style.display = "block";
+      status.textContent = "Iniciando generación de PDFs...";
+      progressFill.style.width = "0%";
+      progressLabel.textContent = "0%";
+      const zip = new JSZip();
+      const { jsPDF } = window.jspdf;
+      for (let i = 0; i < rows.length; i++){
+        try {
+          setInvoice(rows[i]);
+          await new Promise(resolve => setTimeout(resolve, 500));
+          const canvas = await html2canvas(invoice, {
+            scale: 1.5,
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            logging: false,
+            allowTaint: true
+          });
+          const imgData = canvas.toDataURL("image/jpeg", 0.85);
+          const pdf = new jsPDF("p", "mm", "a4");
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const canvasAspect = canvas.height / canvas.width;
+          const imgWidth = pdfWidth;
+          const imgHeight = pdfWidth * canvasAspect;
+          let heightLeft = imgHeight;
+          let position = 0;
+          if (imgHeight > pdfHeight) {
+            while (heightLeft > 0) {
+              pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pdfHeight;
+              position -= pdfHeight;
+              if (heightLeft > 0) {
+                pdf.addPage();
+              }
+            }
+          } else {
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+          }
+          const empresa = (rows[i].empresa || "DGO").toUpperCase();
+          const invoiceNum = rows[i].invoice_number || String(i + 1).padStart(3, "0");
+          const cliente = rows[i].cliente.replace(/[^a-zA-Z0-9]/g, "_").substring(0, 20);
+          const fileName = `Invoice_${empresa}_${invoiceNum}_${cliente}.pdf`;
+          const pdfBlob = pdf.output("blob");
+          zip.file(fileName, pdfBlob);
+          const pct = Math.round(((i + 1) / rows.length) * 100);
+          progressFill.style.width = pct + "%";
+          progressLabel.textContent = pct + "%";
+          status.textContent = `Generando PDFs...\n${i + 1} de ${rows.length} completadas`;
+        } catch (error) {
+          console.error("Error en factura " + (i + 1), error);
+          status.textContent = `Error en factura ${i + 1}: ${error.message}`;
+          return;
+        }
+      }
+      status.textContent = "Comprimiendo ZIP...";
+      try {
+        const blob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "facturas.zip";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        status.textContent = "✅ ZIP generado y descargado correctamente.";
+        progressWrap.style.display = "none";
+      } catch (error) {
+        console.error("Error al crear ZIP", error);
+        status.textContent = `Error al comprimir ZIP: ${error.message}`;
+      }
+    }
+    document.getElementById("generateBtn").addEventListener("click", generatePDFsAndZip);
+  </script>
+</body>
+</html>
+
+
+
+							<script>
+                            	
+    const empresasData = {
+      DGO: {
+        logo: "https://upload.wikimedia.org/wikipedia/commons/5/50/DGO-logo.png",
+        company: "LATAM STREAMCO INC",
+        address: "885 Third Avenue, 17 floor, New York, NY 10022",
+        tax: "82-4849898",
+        bankName: "Citibank N.A. New York",
+        bankAddress: "388 Greenwich Street, New York, NY 10013",
+        abaWire: "021000089",
+        abaAch: "",
+        swift: "CITIUS33",
+        accountName: "LATAM STREAMCO INC",
+        accountNum: "36439111",
+        displayName: "DGO"
+      },
+      DTV: {
+        logoText: "DIRECTV",
+        company: "DIRECTV LATIN AMERICA, LLC",
+        address: "885 Third Avenue, 17 floor, New York, NY 10022",
+        tax: "954517063",
+        bankName: "Citibank N.A. New York",
+        bankAddress: "388 Greenwich Street, New York, NY 10013",
+        abaWire: "021000089",
+        abaAch: "",
+        swift: "CITIUS33",
+        accountName: "DIRECTV LATIN AMERICA LLC",
+        accountNum: "36439074",
+        displayName: "DTV"
+      }
+    };
+    let rows = [];
+    const status = document.getElementById("status");
+    const invoice = document.getElementById("invoice");
+    const progressWrap = document.getElementById("progressWrap");
+    const progressFill = document.getElementById("progressFill");
+    const progressLabel = document.getElementById("progressLabel");
+    function formatDate(date) {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+    function getTodayDate() {
+      return formatDate(new Date());
+    }
+    function getDueDatePlus30Days() {
+      const today = new Date();
+      const dueDate = new Date(today.getTime() + (30 * 24 * 60 * 60 * 1000));
+      return formatDate(dueDate);
+    }
+    function getMonthName(dateStr) {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                      'July', 'August', 'September', 'October', 'November', 'December'];
+      const parts = dateStr.split('/');
+      const monthIndex = parseInt(parts[1]) - 1;
+      const year = parts[2];
+      return months[monthIndex] + ' ' + parts[0] + ', ' + year;
+    }
+    function money(v){
+      const n = Number(String(v).replace(/[^0-9.-]/g, ""));
+      return "$" + (isNaN(n) ? 0 : n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function moneyShort(v){
+      const n = Number(String(v).replace(/[^0-9.-]/g, ""));
+      return "$" + (isNaN(n) ? 0 : n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+    }
+    function setInvoice(data){
+      const empresa = (data.empresa || "DGO").toUpperCase();
+      const empresaConfig = empresasData[empresa] || empresasData["DGO"];
+      const logoContainer = document.getElementById("logoContainer");
+      
+      if (empresaConfig.logo) {
+        // DGO: mostrar imagen
+        logoContainer.innerHTML = '<img id="logoImg" src="' + empresaConfig.logo + '" alt="Logo" style="width:170px; height:auto; display:block;" />';
+      } else if (empresaConfig.logoText) {
+        // DTV: mostrar texto
+        logoContainer.innerHTML = '<div class="logo-text">' + empresaConfig.logoText + '</div>';
+      }
+      
+      document.getElementById("companyOut").textContent = empresaConfig.company;
+      document.getElementById("addressOut").textContent = empresaConfig.address;
+      document.getElementById("taxOut").textContent = "TAX Id: " + empresaConfig.tax;
+      document.getElementById("bankNameOut").textContent = "Bank name: " + empresaConfig.bankName;
+      document.getElementById("bankAddressOut").textContent = "Bank address: " + empresaConfig.bankAddress;
+      document.getElementById("abaWireOut").textContent = "ABA # for wire routing: " + empresaConfig.abaWire;
+      document.getElementById("abaAchOut").textContent = empresaConfig.abaAch ? "ABA # for ACH: " + empresaConfig.abaAch : "ABA # for ACH:";
+      document.getElementById("swiftOut").textContent = "Swift Code: " + empresaConfig.swift;
+      document.getElementById("accountNameOut").textContent = "Account name: " + empresaConfig.accountName;
+      document.getElementById("accountNumOut").textContent = "Account #: " + empresaConfig.accountNum;
+      document.getElementById("empresaFooter").textContent = "Invoiced by: " + empresaConfig.displayName;
+      document.getElementById("clienteOut").textContent = data.cliente || "";
+      document.getElementById("contactoOut").textContent = data.contacto || "";
+      document.getElementById("emailOut").textContent = data.email || "";
+      document.getElementById("glosaOut").textContent = data.glosa || "";
+      document.getElementById("montoOut").textContent = moneyShort(data.monto || 0);
+      document.getElementById("subtotalOut").textContent = money(data.monto || 0);
+      document.getElementById("totalOut").textContent = money(data.monto || 0);
+      document.getElementById("invoiceNumOut").textContent = data.invoice_number || "INV-000";
+      const invoiceDate = getTodayDate();
+      document.getElementById("invoiceDateOut").textContent = invoiceDate;
+      const dueDate = getDueDatePlus30Days();
+      const dueDateFormatted = getMonthName(dueDate);
+      document.getElementById("dueOut").innerHTML = "Total Amount Due on&nbsp; " + dueDateFormatted;
+    }
+    function normalizeRow(r){
+      return {
+        cliente: r.cliente || r.CLIENTE || r.Cliente || "",
+        contacto: r.contacto || r.CONTACTO || r.Contacto || "",
+        email: r.email || r.EMAIL || r.Email || "",
+        glosa: r.glosa || r.GLOSA || r.Glosa || "",
+        monto: r.monto || r.MONTO || r.Monto || "",
+        invoice_number: r.invoice_number || r.INVOICE_NUMBER || r["invoice number"] || r["Invoice Number"] || "",
+        invoice_date: r.invoice_date || r.INVOICE_DATE || r["invoice date"] || r["Invoice Date"] || "",
+        due_date: r.due_date || r.DUE_DATE || r["due date"] || r["Due Date"] || "",
+        empresa: r.empresa || r.EMPRESA || r.Empresa || "DGO"
+      };
+    }
+    async function loadExcel(){
+      const file = document.getElementById("excelFile").files[0];
+      if (!file){
+        alert("Seleccioná un archivo Excel.");
+        return false;
+      }
+      const data = await file.arrayBuffer();
+      const wb = XLSX.read(data, { type: "array" });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(ws, { defval: "" });
+      rows = json.map(normalizeRow);
+      if (!rows.length){
+        alert("El Excel no tiene filas de datos.");
+        return false;
+      }
+      status.textContent = `Archivo cargado correctamente.\nFilas detectadas: ${rows.length}`;
+      return true;
+    }
+    document.getElementById("previewBtn").addEventListener("click", async () => {
+      const ok = await loadExcel();
+      if (!ok) return;
+      setInvoice(rows[0]);
+      status.textContent += "\n\nVista previa cargada con la primera factura.";
+    });
+    async function generatePDFsAndZip(){
+      const ok = await loadExcel();
+      if (!ok) return;
+      progressWrap.style.display = "block";
+      status.textContent = "Iniciando generación de PDFs...";
+      progressFill.style.width = "0%";
+      progressLabel.textContent = "0%";
+      const zip = new JSZip();
+      const { jsPDF } = window.jspdf;
+      for (let i = 0; i < rows.length; i++){
+        try {
+          setInvoice(rows[i]);
+          await new Promise(resolve => setTimeout(resolve, 500));
+          const canvas = await html2canvas(invoice, {
+            scale: 1.5,
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            logging: false,
+            allowTaint: true
+          });
+          const imgData = canvas.toDataURL("image/jpeg", 0.85);
+          const pdf = new jsPDF("p", "mm", "a4");
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const canvasAspect = canvas.height / canvas.width;
+          const imgWidth = pdfWidth;
+          const imgHeight = pdfWidth * canvasAspect;
+          let heightLeft = imgHeight;
+          let position = 0;
+          if (imgHeight > pdfHeight) {
+            while (heightLeft > 0) {
+              pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pdfHeight;
+              position -= pdfHeight;
+              if (heightLeft > 0) {
+                pdf.addPage();
+              }
+            }
+          } else {
+            pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+          }
+          const empresa = (rows[i].empresa || "DGO").toUpperCase();
+          const invoiceNum = rows[i].invoice_number || String(i + 1).padStart(3, "0");
+          const cliente = rows[i].cliente.replace(/[^a-zA-Z0-9]/g, "_").substring(0, 20);
+          const fileName = `Invoice_${empresa}_${invoiceNum}_${cliente}.pdf`;
+          const pdfBlob = pdf.output("blob");
+          zip.file(fileName, pdfBlob);
+          const pct = Math.round(((i + 1) / rows.length) * 100);
+          progressFill.style.width = pct + "%";
+          progressLabel.textContent = pct + "%";
+          status.textContent = `Generando PDFs...\n${i + 1} de ${rows.length} completadas`;
+        } catch (error) {
+          console.error("Error en factura " + (i + 1), error);
+          status.textContent = `Error en factura ${i + 1}: ${error.message}`;
+          return;
+        }
+      }
+      status.textContent = "Comprimiendo ZIP...";
+      try {
+        const blob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "facturas.zip";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        status.textContent = "✅ ZIP generado y descargado correctamente.";
+        progressWrap.style.display = "none";
+      } catch (error) {
+        console.error("Error al crear ZIP", error);
+        status.textContent = `Error al comprimir ZIP: ${error.message}`;
+      }
+    }
+    document.getElementById("generateBtn").addEventListener("click", generatePDFsAndZip);
+  
+
+							</script>
+                        </body>
+                        </html>
+                    ;
+                    
